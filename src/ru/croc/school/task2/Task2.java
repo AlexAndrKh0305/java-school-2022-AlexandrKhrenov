@@ -13,9 +13,11 @@ public class Task2 {
         System.out.print("Difference: ");
         double d = input.nextDouble(); //d - разность арифметической прогрессии
         System.out.print("Amount of elements: ");
-        long n = input.nextLong(); //n - количество членов арифметической прогрессии
-        for (int i = 1; i <= n; i++) {
-            sum += a0 + d * (i - 1);
+        int n = input.nextInt(); //n - количество членов арифметической прогрессии
+        double nextA = a0;
+        for (int i = 0; i < n; i++) {
+            sum += nextA;
+            nextA += d;
         }
         System.out.print("Sum: ");
         System.out.println(sum);
