@@ -1,211 +1,79 @@
 package ru.croc.school.task5;
-import ru.croc.school.task4.Task4;
-
+import java.sql.SQLOutput;
 import java.util.Scanner;
 import java.util.Locale;
+import ru.croc.school.task5.NewAnnotatedImage;
+import ru.croc.school.task4.Annotation;
+import ru.croc.school.task5.NewCircle;
+import ru.croc.school.task5.NewRectangle;
 
 
 public class Task5 {
 
-    public interface Movable {
-
-        void move(double dx, double dy);
-    }
-
-    class AnnotatedImage {
-
-        private final String imagePath;
-
-        private final Annotation[] annotations;
-
-
-
-        public AnnotatedImage(String imagePath, Annotation... annotations) {
-            this.imagePath = imagePath;
-            this.annotations = annotations;
-        }
-
-        public String getImagePath() {
-            return this.imagePath;
-        }
-
-        public Annotation[] getAnnotations() {
-            return this.annotations;
-        }
-
-        public Annotation findByPoint(int x, int y) {
-            for (Annotation a : this.annotations) {
-                if (a.figure.ifContainsPoint(x, y)) {
-                    return a;
-                }
-            }
-            return null;
-        }
-
-        public Annotation findByLabel(String label) {
-            for (Annotation a : this.annotations) {
-                if (a.text.contains(label)) {
-                    return a;
-                }
-            }
-            return null;
-        }
-
-    }
-
-    static class Annotation {
-
-        private String text;
-        private Figure figure;
-
-        Annotation(String text, Figure figure) {
-            this.text = text;
-            this.figure = figure;
-        }
-
-        @Override
-        public String toString() {
-            String ans = "";
-            if (this.figure instanceof Rectangle) {
-                ans = "Rectangle (" + ((Rectangle) this.figure).getX1() + ", ";
-                ans += ((Rectangle) this.figure).getY1() + "), (";
-                ans += ((Rectangle) this.figure).getX2() + ", " + ((Rectangle) this.figure).getY2() + "): ";
-                ans += text;
-            }
-            else if (this.figure instanceof Circle){
-                ans = "Circle (" + ((Circle) this.figure).getX0() + ", ";
-                ans += ((Circle) this.figure).getY0() + ") ";
-                ans += ((Circle) this.figure).getRadius() + ": ";
-                ans += text;
-            }
-            return ans;
-        }
-
-    }
-
-    public abstract class Figure implements Movable{
-
-        protected String color = "White";
-
-        public String getColor() {
-            return this.color;
-        }
-
-        public void setColor(String color) {
-            this.color = color;
-        }
-
-        public boolean ifContainsPoint(double x, double y) {
-            return false;
-        }
-
-    }
-
-    static class Rectangle extends Figure{
-
-        private double x1, y1, x2, y2;
-
-        Rectangle(double x1, double y1, double x2, double y2) {
-            super();
-            this.x1 = x1;
-            this.y1 = y1;
-            this.x2 = x2;
-            this.y2 = y2;
-        }
-
-
-        public void move(double x, double y) {
-            this.x1 += x;
-            this.x2 += x;
-            this.y1 += y;
-            this.y2 += y;
-        }
-
-        public double getX1() {
-            return this.x1;
-        }
-
-        public double getY1() {
-            return this.y1;
-        }
-
-        public double getX2() {
-            return this.x2;
-        }
-
-        public double getY2() {
-            return this.y2;
-        }
-
-        public boolean ifContainsPoint(double x, double y) {
-
-            if (this.x1 <= x && x <= this.x2 && this.y1 <= y && y <= this.y2) {
-                return true;
-            }
-            else {
-                return false;
-            }
-
-        }
-
-    }
-
-    static class Circle extends Figure{
-
-        private double x0, y0, radius;
-
-        Circle(double x0, double y0, double radius) {
-            super();
-            this.x0 = x0;
-            this.y0 = y0;
-            this.radius = radius;
-        }
-
-        public void move(double x, double y) {
-
-            this.x0 += x;
-            this.y0 += y;
-
-        }
-
-        public double getX0() {
-            return this.x0;
-        }
-
-        public double getY0() {
-            return this.y0;
-        }
-
-        public double getRadius() {
-            return this.radius;
-        }
-
-        public boolean ifContainsPoint(double x, double y) {
-
-            if ((this.x0 - x) * (this.x0 - x) + (this.y0 - y) * (this.y0 - y) <= this.radius * this.radius) {
-                return true;
-            }
-            else {
-                return false;
-            }
-
-        }
-
-    }
-
     public static void main(String[] args) {
 
-        // Example 1
-        Rectangle rectangle = new Rectangle(100, 100, 150, 200);
-        Annotation annotation1 = new Annotation("Car", rectangle);
-        System.out.println(annotation1);
+        NewCircle f1 = new NewCircle(5, 6, 9.5);
+        Annotation ann1 = new Annotation("First: Ben writes a letter", f1);
 
-        // Example 2
-        Circle circle = new Circle(100, 100, 10);
-        Annotation annotation2 = new Annotation("Tree", circle);
-        System.out.println(annotation2);
+        NewRectangle f2 = new NewRectangle(-3, -7, 0, 1);
+        Annotation ann2 = new Annotation("Second: Maria is cooking dinner", f2);
 
+        NewCircle f3 = new NewCircle(-10.35, -30, 3);
+        Annotation ann3 = new Annotation("Third: Peter rides a bike", f3);
 
+        NewRectangle f4 = new NewRectangle(7, 5, 42, 30);
+        Annotation ann4 = new Annotation("Fourth: Jack has had dinner yet", f4);
+
+        NewRectangle f5 = new NewRectangle(-15.25, -32, 2, 0);
+        Annotation ann5 = new Annotation("Fifth: Ben does sports every day", f5);
+
+        NewCircle f6 = new NewCircle(-12, -31, 50);
+        Annotation ann6 = new Annotation("Sixth: John is watching movie", f6);
+
+        Annotation[] annotations = {ann1, ann2, ann3, ann4, ann5, ann6};
+
+        NewAnnotatedImage annImage1 = new NewAnnotatedImage("ru.croc.school.somepath", annotations);
+
+        //Searching Annotation by label
+        System.out.println("Searching Annotation by label:");
+        System.out.println("dinner:");
+        System.out.println(annImage1.findByLabel("dinner"));
+        System.out.println("John:");
+        System.out.println(annImage1.findByLabel("John"));
+        System.out.println();
+
+        //Searching Annotation by point
+        System.out.println("Searching Annotation by point:");
+        System.out.println("(-11, -29)");
+        System.out.println(annImage1.findByPoint(-11, -29));
+        System.out.println();
+
+        //Moving some Figures
+        System.out.println("Moving some Figures");
+        System.out.println("Move third Annotation (100, 100)");
+        f3.move(100, 100);
+        ann3.setFigure(f3);
+        System.out.println("Move fourth Annotation (-3, -5)");
+        f4.move(-3, -5);
+        ann4.setFigure(f4);
+        System.out.println();
+
+        annotations[2] = ann3;
+        annotations[3] = ann4;
+
+        NewAnnotatedImage annImage2 = new NewAnnotatedImage("ru.croc.school.somepath", annotations);
+
+        //Searching Annotation by point
+        System.out.println("Searching Annotation by point:");
+        System.out.println("(-11, -29)");
+        System.out.println(annImage2.findByPoint(-11, -29));
+        System.out.println();
+
+        //All Annotations
+        System.out.println("All Annotations:");
+        for (Annotation ann : annImage2.getAnnotations()) {
+            System.out.println(ann);
+        }
 
     }
 

@@ -1,145 +1,39 @@
 package ru.croc.school.task4;
 import java.util.Scanner;
 import java.util.Locale;
+import ru.croc.school.task4.Annotation;
+import ru.croc.school.task4.Circle;
+import ru.croc.school.task4.Rectangle;
 
 public class Task4 {
 
-    class AnnotatedImage {
-
-        private final String imagePath;
-
-        private final Annotation[] annotations;
-
-
-
-        public AnnotatedImage(String imagePath, Annotation... annotations) {
-            this.imagePath = imagePath;
-            this.annotations = annotations;
-        }
-
-        public String getImagePath() {
-            return this.imagePath;
-        }
-
-        public Annotation[] getAnnotations() {
-            return this.annotations;
-        }
-    }
-
-
-    static class Annotation {
-
-        private String text;
-        private Figure figure;
-
-        Annotation(String text, Figure figure) {
-            this.text = text;
-            this.figure = figure;
-        }
-
-        @Override
-        public String toString() {
-            String ans = "";
-            if (this.figure instanceof Rectangle) {
-                ans = "Rectangle (" + ((Rectangle) this.figure).getX1() + ", ";
-                ans += ((Rectangle) this.figure).getY1() + "), (";
-                ans += ((Rectangle) this.figure).getX2() + ", " + ((Rectangle) this.figure).getY2() + "): ";
-                ans += text;
-            }
-            else if (this.figure instanceof Circle){
-                ans = "Circle (" + ((Circle) this.figure).getX0() + ", ";
-                ans += ((Circle) this.figure).getY0() + ") ";
-                ans += ((Circle) this.figure).getRadius() + ": ";
-                ans += text;
-            }
-            return ans;
-        }
-
-    }
-
-    static class Figure {
-
-        protected String color = "White";
-
-        public String getColor() {
-            return this.color;
-        }
-
-        public void setColor(String color) {
-            this.color = color;
-        }
-
-    }
-
-    static class Rectangle extends Figure {
-
-        private double x1, y1, x2, y2;
-
-        Rectangle(double x1, double y1, double x2, double y2) {
-            super();
-            this.x1 = x1;
-            this.y1 = y1;
-            this.x2 = x2;
-            this.y2 = y2;
-        }
-
-        public double getX1() {
-            return this.x1;
-        }
-
-        public double getY1() {
-            return this.y1;
-        }
-
-        public double getX2() {
-            return this.x2;
-        }
-
-        public double getY2() {
-            return this.y2;
-        }
-
-    }
-
-    static class Circle extends Figure {
-
-        private double x0, y0, radius;
-
-        Circle(double x0, double y0, double radius) {
-            super();
-            this.x0 = x0;
-            this.y0 = y0;
-            this.radius = radius;
-        }
-
-        public double getX0() {
-            return this.x0;
-        }
-
-        public double getY0() {
-            return this.y0;
-        }
-
-        public double getRadius() {
-            return this.radius;
-        }
-
-    }
-
     public static void main(String[] args) {
 
-        // Example 1
-        Rectangle rectangle = new Rectangle(100, 100, 150, 200);
-        Annotation annotation1 = new Annotation("Car", rectangle);
-        System.out.println(annotation1);
+        Circle f1 = new Circle(5, 6, 9.5);
+        Annotation ann1 = new Annotation("First: Ben writes a letter", f1);
 
-        // Example 2
-        Circle circle = new Circle(100, 100, 10);
-        Annotation annotation2 = new Annotation("Tree", circle);
-        System.out.println(annotation2);
+        Rectangle f2 = new Rectangle(-3, -7, 0, 1);
+        Annotation ann2 = new Annotation("Second: Maria is cooking dinner", f2);
 
+        Circle f3 = new Circle(-10.35, -30, 3);
+        Annotation ann3 = new Annotation("Third: Peter rides a bike", f3);
 
+        Rectangle f4 = new Rectangle(7, 5, 42, 30);
+        Annotation ann4 = new Annotation("Fourth: Jack has had dinner yet", f4);
 
+        Rectangle f5 = new Rectangle(-15.25, -32, 2, 0);
+        Annotation ann5 = new Annotation("Fifth: Ben does sports every day", f5);
+
+        Circle f6 = new Circle(-12, -31, 50);
+        Annotation ann6 = new Annotation("Sixth: John is watching movie", f6);
+
+        Annotation[] annotations = {ann1, ann2, ann3, ann4, ann5, ann6};
+
+        AnnotatedImage annImage = new AnnotatedImage("ru.croc.school.somepath", annotations);
+
+        for (Annotation ann : annImage.getAnnotations()) {
+            System.out.println(ann);
+        }
     }
 
 }
