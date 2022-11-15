@@ -1,5 +1,4 @@
 package ru.croc.school.task5;
-import java.sql.SQLOutput;
 import java.util.Scanner;
 import java.util.Locale;
 import ru.croc.school.task5.NewAnnotatedImage;
