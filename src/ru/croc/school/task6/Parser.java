@@ -16,18 +16,15 @@ public class Parser {
                 endChar = Math.max(source.indexOf("\n", indexOfOneLineComment), startChar);
                 textWithNoComments += source.substring(startChar, indexOfOneLineComment);
                 startChar = endChar;
-                indexOfOneLineComment = source.indexOf("//", startChar);
-                indexOfManyLinesComment = source.indexOf("/*", startChar);
             }
 
-            else if (indexOfManyLinesComment != -1 &&
-                    (indexOfManyLinesComment <= indexOfOneLineComment || indexOfOneLineComment == -1)) {
+            else {
                 endChar = Math.max(source.indexOf("*/", indexOfManyLinesComment), startChar);
                 textWithNoComments += source.substring(startChar, indexOfManyLinesComment);
                 startChar = endChar + 2;
-                indexOfOneLineComment = source.indexOf("//", startChar);
-                indexOfManyLinesComment = source.indexOf("/*", startChar);
             }
+            indexOfOneLineComment = source.indexOf("//", startChar);
+            indexOfManyLinesComment = source.indexOf("/*", startChar);
 
         }
         textWithNoComments += source.substring(Math.min(startChar, source.length()), source.length());
