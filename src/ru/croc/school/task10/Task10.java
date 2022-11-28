@@ -25,7 +25,7 @@ public class Task10 {
         User.setAuctionLot(startedLot);
         Thread[] users = new Thread[userCount];
 
-        try (OutputStream out = new FileOutputStream("output.txt")) {
+        try (OutputStream out = new FileOutputStream("src\\ru\\croc\\school\\task10\\output.txt")) {
             out.write("".getBytes(StandardCharsets.UTF_8));
         } catch (FileNotFoundException e) {
             e.printStackTrace();

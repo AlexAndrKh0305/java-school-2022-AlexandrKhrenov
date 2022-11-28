@@ -34,7 +34,7 @@ public class AuctionLot {
     }
 
     public void changeValue(long newValue, String betUser) {
-        try (OutputStream out = new FileOutputStream("output.txt", true)) {
+        try (OutputStream out = new FileOutputStream("src\\ru\\croc\\school\\task10\\output.txt", true)) {
             if (newValue > this.currentValue && this.auctionFinishedTime.isAfter(LocalDateTime.now())) {
                 String text = "Bet is allowed: User: " + betUser +
                         " Old value: " + this.currentValue + " New value: " + newValue + "\n";
