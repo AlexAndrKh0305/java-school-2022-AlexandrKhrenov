@@ -27,7 +27,7 @@ public class AuctionLot {
     }
 
 
-    public long getCurrentValue() {
+    public synchronized long getCurrentValue() {
         return this.currentValue;
     }
 
