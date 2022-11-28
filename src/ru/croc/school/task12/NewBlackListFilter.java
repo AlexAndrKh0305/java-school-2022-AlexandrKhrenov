@@ -2,7 +2,7 @@ package ru.croc.school.task12;
 import java.util.List;
 import java.util.Set;
 
-final class NewBlackListFilter implements BlackListFilter{
+public class NewBlackListFilter implements BlackListFilter{
 
     public void filterComments(List<String> comments, Set<String> blackList) {
         for (String badWord : blackList) {
