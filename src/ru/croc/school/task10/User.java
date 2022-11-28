@@ -1,11 +1,8 @@
 package ru.croc.school.task10;
-import java.time.temporal.ChronoUnit;
 import java.util.Random;
-import java.time.LocalDateTime;
 
 public class User implements Runnable{
 
-    private static final Object lock = new Object();
     private static AuctionLot lot;
     String userName;
 

@@ -6,7 +6,6 @@ import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.Scanner;
-import ru.croc.school.task10.AuctionLot;
 
 
 public class Task10 {
