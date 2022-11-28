@@ -24,9 +24,7 @@ public class User implements Runnable{
     public void run() {
         Random randVar = new Random(System.currentTimeMillis());
         while (!Thread.currentThread().isInterrupted()) {
-            synchronized (lock) {
-                lot.changeValue(randVar.nextLong(lot.getCurrentValue() + 1L,lot.getCurrentValue() + 100L), this.userName);
-            }
+            lot.changeValue(randVar.nextLong(lot.getCurrentValue() + 1L,lot.getCurrentValue() + 100L), this.userName);
             try {
                 Thread.sleep((long) (1e3 / (randVar.nextInt(1, 20))));
             } catch (InterruptedException e) {
