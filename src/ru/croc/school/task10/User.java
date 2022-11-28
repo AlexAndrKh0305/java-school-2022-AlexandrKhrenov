@@ -3,19 +3,12 @@ import java.util.Random;
 
 public class User implements Runnable{
 
-    private static AuctionLot lot;
-    String userName;
+    private AuctionLot lot;
+    private String userName;
 
-    User(String userName) {
+    User(String userName, AuctionLot lot) {
         this.userName = userName;
-    }
-
-    public static void setAuctionLot(AuctionLot startedLot) {
-        lot = startedLot;
-    }
-
-    public static AuctionLot getLot() {
-        return lot;
+        this.lot = lot;
     }
 
     public void run() {

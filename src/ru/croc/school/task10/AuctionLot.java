@@ -1,5 +1,4 @@
 package ru.croc.school.task10;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -51,8 +50,6 @@ public class AuctionLot {
                     out.write(text.getBytes(StandardCharsets.UTF_8));
                 }
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
