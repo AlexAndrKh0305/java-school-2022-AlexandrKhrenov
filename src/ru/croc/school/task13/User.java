@@ -22,7 +22,7 @@ public class User {
             return false;
 
         User user = (User) obj;
-        return this.historyOfFilms.equals(user.historyOfFilms);
+        return this.historyOfFilms.equals(user.getHistoryOfFilms());
     }
 
     @Override

@@ -28,8 +28,8 @@ public class Film {
             return false;
 
         Film film = (Film) obj;
-        return this.filmID.equals(film.filmID) &&
-                this.filmTitle.equals(film.filmTitle);
+        return this.filmID.equals(film.getFilmID()) &&
+                this.filmTitle.equals(film.getFilmTitle());
     }
 
     @Override
